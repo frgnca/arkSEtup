@@ -75,7 +75,7 @@ StartLimitBurst=3
 User=$username
 Group=$username
 ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit
-ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$Port -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin
+ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin
 [Install]
 WantedBy=multi-user.target" >> /etc/systemd/system/$username.$servername.$map.service
 
