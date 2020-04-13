@@ -81,12 +81,17 @@ WantedBy=multi-user.target" >> /etc/systemd/system/$username.$servername.$map.se
 
 done
 
-# Reload and enable daemons
+# Reload daemons
 systemctl daemon-reload
-systemctl enable $username.$servername.*
 
-##Start ARK servers
-systemctl start $username.$servername.*
+# For each map part of the cluster
+for map in $servermaps; do
+
+# Enable and start daemon
+systemctl enable $username.$servername.$map.service
+systemctl start $username.$servername.$map.service
+
+done
 
 # Create user cron job to stop/start the daemons
 #crontab -l > crontmp
