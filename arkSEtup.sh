@@ -39,14 +39,14 @@ ln -s /usr/games/steamcmd /home/$username/steamcmd
 # As user $username, install ARK server
 su $username -c "steamcmd +login anonymous +force_install_dir ~/server +app_update 376030 +quit"
 
-# Copy server whitelist
-mkdir -p /home/$username/server/ShooterGame/Binaries/Linux
-cp $ScriptLocation/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt
+# As user $username, copy server whitelist
+su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
+su ark -c "cp $ScriptLocation/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
 
-# Copy server settings
-mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer
-cp $ScriptLocation/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
-cp $ScriptLocation/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini
+# As user $username, copy server settings
+su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
+su ark -c "cp $ScriptLocation/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+su ark -c "cp $ScriptLocation/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
 
 # For each map part of the cluster
 i=-1 #One query port needed per map
