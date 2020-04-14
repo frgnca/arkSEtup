@@ -28,7 +28,6 @@ ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 adduser --gecos "" --force-badname $username
 
 # Add repository for Steam
-add-apt-repository multiverse
 dpkg --add-architecture i386
 apt-get update
 apt-get -y upgrade
