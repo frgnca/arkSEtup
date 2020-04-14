@@ -92,11 +92,11 @@ systemctl start $username.$servername.$map.service
 
 done
 
-# Create user cron job to stop/start the daemons
-#crontab -l > crontmp
-#echo "* * * * * systemctl stop $username.$servername.* && systemctl start $username.$servername.*" >> crontmp
-#crontab crontmp
-#rm crontmp
+# Create daily cron job to stop/start the daemons
+crontab -l > crontmp
+echo "0 6 * * * systemctl stop $username.$servername.* && systemctl start $username.$servername.*" >> crontmp
+crontab crontmp
+rm crontmp
 
 # Show daemon status
 systemctl status $username.$servername.*
