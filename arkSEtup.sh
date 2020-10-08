@@ -3,7 +3,7 @@
 # MIT License
 
 # arkSEtup.sh
-# Setup ARK Survival Evolved headless server on Ubuntu 18.04.4 LTS
+# Setup ARK Survival Evolved headless server on Ubuntu 20.04.1 LTS
 #   Create a user which will run the systemd daemon for each map
 #   Install steamcmd and the ARK Survival Evolved game
 #   Allow necessary ports through ufw
