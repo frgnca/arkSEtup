@@ -13,7 +13,7 @@
 # Username for the daemon
 username="ark"
 # Name of the ARK server/cluster
-servername="ip.frgn.ca"
+servername="Server Name"
 # Map(s) of the ARK server/cluster
 servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland TheCenter Ragnarok Valguero_P ScorchedEarth_P Aberration_P Extinction Genesis CrystalIsles"
 ###################
