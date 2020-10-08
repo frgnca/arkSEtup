@@ -15,7 +15,7 @@ username="ark"
 # Name of the ARK server/cluster
 servername="ip.frgn.ca"
 # Map(s) of the ARK server/cluster
-servermaps="TheIsland TheCenter Ragnarok Valguero_P" #"TheIsland TheCenter Ragnarok Valguero_P ScorchedEarth_P Aberration_P Extinction"
+servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland TheCenter Ragnarok Valguero_P ScorchedEarth_P Aberration_P Extinction Genesis CrystalIsles"
 ###################
 # Starting range for query ports
 StartingQueryPort=27015
