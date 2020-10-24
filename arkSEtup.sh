@@ -26,7 +26,7 @@ ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Add user that will be used to run the server
 echo "Create password for new user $username"
-adduser --gecos "" --force-badname $username
+adduser --gecos "" --force-badname $username > /dev/null
 
 # Add repository for Steam
 dpkg --add-architecture i386
