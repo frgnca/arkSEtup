@@ -44,13 +44,13 @@ ln -s /usr/games/steamcmd /home/$username/steamcmd
 # As user $username, install ARK server
 su $username -c "steamcmd +login anonymous +force_install_dir ~/server +app_update 376030 +quit"
 
-# If there is a non-empty server whitelist
-if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
-  # There is a non-empty server whitelist
+# If there is a non-empty Game file
+if [ -s "$ScriptLocation/settings/Game.ini" ]; then
+  # There is a non-empty Game file
 
-  # As user $username, copy server whitelist
-  su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
-  su ark -c "cp $ScriptLocation/whitelist/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
+  # As user $username, copy Game file
+  su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
+  su ark -c "cp $ScriptLocation/settings/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
 fi
 
 # If there is a non-empty GameUserSettings file
@@ -62,15 +62,6 @@ if [ -s "$ScriptLocation/settings/GameUserSettings.ini" ]; then
   su ark -c "cp $ScriptLocation/settings/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 fi
 
-# If there is a non-empty Game file
-if [ -s "$ScriptLocation/settings/Game.ini" ]; then
-  # There is a non-empty Game file
-
-  # As user $username, copy Game file
-  su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
-  su ark -c "cp $ScriptLocation/settings/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
-fi
-
 # For each file in the template folder
 for file in $ScriptLocation/template; do
 # If the file is non-empty
@@ -79,6 +70,15 @@ if [ -s "$file" ]; then
   
   # As user $username, copy the file to the SavedArks folder
   su ark -c "cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file"
+fi
+
+# If there is a non-empty server whitelist
+if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
+  # There is a non-empty server whitelist
+
+  # As user $username, copy server whitelist
+  su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
+  su ark -c "cp $ScriptLocation/whitelist/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
 fi
 
 done
