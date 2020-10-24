@@ -45,14 +45,32 @@ ln -s /usr/games/steamcmd /home/$username/steamcmd
 # As user $username, install ARK server
 su $username -c "steamcmd +login anonymous +force_install_dir ~/server +app_update 376030 +quit"
 
-# As user $username, copy server whitelist
-su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
-su ark -c "cp $ScriptLocation/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
+# If there is a server whitelist
+if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
+  # There is a server whitelist
 
-# As user $username, copy server settings
-su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
-su ark -c "cp $ScriptLocation/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
-su ark -c "cp $ScriptLocation/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
+  # As user $username, copy server whitelist
+  su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
+  su ark -c "cp $ScriptLocation/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
+fi
+
+# If there is a GameUserSettings file
+if [ -f "$ScriptLocation/GameUserSettings.ini" ]; then
+  # There is a GameUserSettings file
+
+  # As user $username, copy GameUserSettings file
+  su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
+  su ark -c "cp $ScriptLocation/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+fi
+
+# If there is a Game file
+if [ -f "$ScriptLocation/GameUserSettings.ini" ]; then
+  # There is a Game file
+
+  # As user $username, copy Game file
+  su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
+  su ark -c "cp $ScriptLocation/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
+fi
 
 # For each map part of the cluster
 i=-1 #One query port needed per map
@@ -79,9 +97,16 @@ StartLimitInterval=60s
 StartLimitBurst=3
 User=$username
 Group=$username
-ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit
-ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin
-[Install]
+ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit" >> /etc/systemd/system/$username.$servername.$map.service
+# If there is a server whitelist
+if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
+  # There is a server whitelist
+  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin" >> /etc/systemd/system/$username.$servername.$map.service
+else
+  # There is no server whitelist
+  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log" >> /etc/systemd/system/$username.$servername.$map.service
+fi
+echo "[Install]
 WantedBy=multi-user.target" >> /etc/systemd/system/$username.$servername.$map.service
 
 done
