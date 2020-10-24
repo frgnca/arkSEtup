@@ -25,6 +25,7 @@ StartingPort=7777
 ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Add user that will be used to run the server
+echo "Create password for new user $username"
 adduser --gecos "" --force-badname $username
 
 # Add repository for Steam
