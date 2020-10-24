@@ -69,7 +69,7 @@ if [ -f "$ScriptLocation/GameUserSettings.ini" ]; then
 
   # As user $username, copy Game file
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
-  su ark -c "cp $ScriptLocation/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
+  su ark -c "cp $ScriptLocation/settings/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
 fi
 
 # For each map part of the cluster
