@@ -46,12 +46,12 @@ ln -s /usr/games/steamcmd /home/$username/steamcmd
 su $username -c "steamcmd +login anonymous +force_install_dir ~/server +app_update 376030 +quit"
 
 # If there is a server whitelist
-if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
+if [ -f "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
   # There is a server whitelist
 
   # As user $username, copy server whitelist
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
-  su ark -c "cp $ScriptLocation/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
+  su ark -c "cp $ScriptLocation/whitelist/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
 fi
 
 # If there is a GameUserSettings file
@@ -99,7 +99,7 @@ User=$username
 Group=$username
 ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit" >> /etc/systemd/system/$username.$servername.$map.service
 # If there is a server whitelist
-if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
+if [ -f "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
   # There is a server whitelist
   echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin" >> /etc/systemd/system/$username.$servername.$map.service
 else
