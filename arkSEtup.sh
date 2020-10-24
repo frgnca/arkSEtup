@@ -98,12 +98,12 @@ StartLimitBurst=3
 User=$username
 Group=$username
 ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit" >> /etc/systemd/system/$username.$servername.$map.service
-# If there is a server whitelist
-if [ -f "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
-  # There is a server whitelist
+# If there is a non-empty server whitelist
+if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
+  # There is a non-empty server whitelist
   echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin" >> /etc/systemd/system/$username.$servername.$map.service
 else
-  # There is no server whitelist
+  # There is no non-empty server whitelist
   echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log" >> /etc/systemd/system/$username.$servername.$map.service
 fi
 echo "[Install]
