@@ -5,7 +5,8 @@ ARK Survival Evolved server setup script
     git init && git pull https://github.com/frgnca/arkSEtup test
 ## Settings
 **arkSEtup.sh**  
-Edit to change server name and/or map(s)  
+Edit to change server name and/or map(s)
+
 **settings/Game.ini**  
 See https://ark.gamepedia.com/Server_Configuration#Game.ini  
 **settings/GameUserSettings.ini**  
