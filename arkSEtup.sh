@@ -128,6 +128,3 @@ crontab -l > crontmp > /dev/null 2>&1
 echo "0 6 * * * systemctl stop $username.$servername.* && systemctl start $username.$servername.*" >> crontmp
 crontab crontmp
 rm crontmp
-
-# Show daemon status
-systemctl status $username.$servername.*
