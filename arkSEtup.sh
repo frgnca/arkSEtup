@@ -101,10 +101,10 @@ ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/
 # If there is a server whitelist
 if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
   # There is a server whitelist
-  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin" >> /etc/systemd/system/$username.$servername.$map.service
+  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log -exclusivejoin" >> /etc/systemd/system/$username.$servername.$map.service
 else
   # There is no server whitelist
-  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?AltSaveDirectoryName=$servername.$map?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log" >> /etc/systemd/system/$username.$servername.$map.service
+  echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log" >> /etc/systemd/system/$username.$servername.$map.service
 fi
 echo "[Install]
 WantedBy=multi-user.target" >> /etc/systemd/system/$username.$servername.$map.service
