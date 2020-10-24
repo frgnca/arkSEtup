@@ -44,32 +44,44 @@ ln -s /usr/games/steamcmd /home/$username/steamcmd
 # As user $username, install ARK server
 su $username -c "steamcmd +login anonymous +force_install_dir ~/server +app_update 376030 +quit"
 
-# If there is a server whitelist
-if [ -f "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
-  # There is a server whitelist
+# If there is a non-empty server whitelist
+if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
+  # There is a non-empty server whitelist
 
   # As user $username, copy server whitelist
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
   su ark -c "cp $ScriptLocation/whitelist/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
 fi
 
-# If there is a GameUserSettings file
-if [ -f "$ScriptLocation/settings/GameUserSettings.ini" ]; then
-  # There is a GameUserSettings file
+# If there is a non-empty GameUserSettings file
+if [ -s "$ScriptLocation/settings/GameUserSettings.ini" ]; then
+  # There is a non-empty GameUserSettings file
 
   # As user $username, copy GameUserSettings file
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
   su ark -c "cp $ScriptLocation/settings/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 fi
 
-# If there is a Game file
-if [ -f "$ScriptLocation/settings/Game.ini" ]; then
-  # There is a Game file
+# If there is a non-empty Game file
+if [ -s "$ScriptLocation/settings/Game.ini" ]; then
+  # There is a non-empty Game file
 
   # As user $username, copy Game file
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
   su ark -c "cp $ScriptLocation/settings/Game.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/Game.ini"
 fi
+
+# For each file in the template folder
+for file in $ScriptLocation/template; do
+# If the file is non-empty
+if [ -s "$file" ]; then
+  # The file is non-empty
+  
+  # Copy the file to the SavedArks folder
+  cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file
+fi
+
+done
 
 # For each map part of the cluster
 i=-1 #One query port needed per map
