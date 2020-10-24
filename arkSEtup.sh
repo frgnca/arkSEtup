@@ -59,14 +59,18 @@ if [ -s "$ScriptLocation/settings/GameUserSettings.ini" ]; then
   su ark -c "cp $ScriptLocation/settings/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 fi
 
+# Create SavedArks folder
+su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/SavedArks"
+
+templateFiles=$ScriptLocation/template/*
 # For each file in the template folder
-for file in $ScriptLocation/template; do
+for file in $templateFiles; do
 # If the file is non-empty
 if [ -s "$file" ]; then
   # The file is non-empty
 
   # As user $username, copy the file to the SavedArks folder
-  su ark -c "cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file"
+  su ark -c "cp $file /home/$username/server/ShooterGame/Saved/SavedArks/${file##*/}"
 fi
 
 done
