@@ -11,7 +11,7 @@
 
 ################################################################################
 # Name of the ARK server/cluster
-servername="Server_Name"
+servername="arkSEtup"
 # Map(s) of the ARK server/cluster
 servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland TheCenter ScorchedEarth_P Ragnarok Aberration_P Extinction Valguero_P Genesis CrystalIsles"
 ###################
