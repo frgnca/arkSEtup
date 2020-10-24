@@ -64,10 +64,12 @@ for file in $ScriptLocation/template; do
 # If the file is non-empty
 if [ -s "$file" ]; then
   # The file is non-empty
-  
+
   # As user $username, copy the file to the SavedArks folder
   su ark -c "cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file"
 fi
+
+done
 
 # If there is a non-empty server whitelist
 if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
@@ -77,8 +79,6 @@ if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Binaries/Linux"
   su ark -c "cp $ScriptLocation/whitelist/PlayersExclusiveJoinList.txt /home/$username/server/ShooterGame/Binaries/Linux/PlayersExclusiveJoinList.txt"
 fi
-
-done
 
 # For each map part of the cluster
 i=-1 #One query port needed per map
