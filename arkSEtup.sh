@@ -28,9 +28,6 @@ ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Create password for new user $username"
 adduser --gecos "" --force-badname $username > /dev/null
 
-# Add repository for Steam
-dpkg --add-architecture i386
-
 # Auto accept Steam EULA
 echo steam steam/license note '' | debconf-set-selections
 echo steam steam/question select "I AGREE" | debconf-set-selections
