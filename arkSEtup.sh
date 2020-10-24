@@ -10,13 +10,13 @@
 # Based on https://www.linode.com/docs/game-servers/create-an-ark-survival-evolved-server-on-ubuntu-16-04/
 
 ################################################################################
-# Username for the daemon
-username="ark"
 # Name of the ARK server/cluster
 servername="Server_Name"
 # Map(s) of the ARK server/cluster
 servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland TheCenter ScorchedEarth_P Ragnarok Aberration_P Extinction Valguero_P Genesis CrystalIsles"
 ###################
+# Username for the daemon
+username="ark"
 # Starting range for query ports
 StartingQueryPort=27015
 # Starting range for ports
