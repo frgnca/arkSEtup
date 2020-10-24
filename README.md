@@ -1,12 +1,12 @@
 # arkSEtup
-Setup ARK Survival Evolved headless server on Ubuntu 20.04.1 LTS
+ARK Survival Evolved server setup script
 
 ## Download
     git init && git pull https://github.com/frgnca/arkSEtup/tree/test
 ## Settings
-    nano arkSEtup.sh # Edit file to change servername and/or servermaps
-    nano Game.ini # Edit to change multipliers, or delete file to use default
-    nano GameUserSettings.ini # Edit to change ServerSettings, or delete file to use default
-    nano PlayersExclusiveJoinList.txt # Edit to change whitelist, or delete file to not use any
+    nano arkSEtup.sh # Edit to change server name and/or map(s)
+    nano settings/Game.ini # See https://ark.gamepedia.com/Server_Configuration#Game.ini
+    nano settings/GameUserSettings.ini # See https://ark.gamepedia.com/Server_Configuration#GameUserSettings.ini
+    nano whitelist/PlayersExclusiveJoinList.txt # Add steamID64(s) to enable
 ## Setup
     sudo ./arkSEtup.sh
