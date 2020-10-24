@@ -77,8 +77,8 @@ for file in $ScriptLocation/template; do
 if [ -s "$file" ]; then
   # The file is non-empty
   
-  # Copy the file to the SavedArks folder
-  cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file
+  # As user $username, copy the file to the SavedArks folder
+  su ark -c "cp $file /home/$username/server/ShooterGame/Saved/SavedArks/$file"
 fi
 
 done
