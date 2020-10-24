@@ -36,8 +36,6 @@ echo steam steam/license note '' | debconf-set-selections
 echo steam steam/question select "I AGREE" | debconf-set-selections
 
 # Install Steam
-#apt-get update
-#apt-get -y upgrade
 apt-get -y install lib32gcc1 steamcmd
 
 # Create symlink from steamcmd to $username home directory
