@@ -55,12 +55,12 @@ if [ -f "$ScriptLocation/PlayersExclusiveJoinList.txt" ]; then
 fi
 
 # If there is a GameUserSettings file
-if [ -f "$ScriptLocation/GameUserSettings.ini" ]; then
+if [ -f "$ScriptLocation/settings/GameUserSettings.ini" ]; then
   # There is a GameUserSettings file
 
   # As user $username, copy GameUserSettings file
   su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/Config/LinuxServer"
-  su ark -c "cp $ScriptLocation/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
+  su ark -c "cp $ScriptLocation/settings/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 fi
 
 # If there is a Game file
