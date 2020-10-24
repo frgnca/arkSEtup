@@ -3,10 +3,10 @@
 # MIT License
 
 # arkSEtup.sh
-# Setup ARK Survival Evolved headless server on Ubuntu 20.04.1 LTS
-#   Create a user which will run the systemd daemon for each map
-#   Install steamcmd and the ARK Survival Evolved game
-#   Allow necessary ports through ufw
+# ARK Survival Evolved setup script for headless linux server
+#   Creates a user to run the systemd daemon for each map
+#   Installs steamcmd and the ARK Survival Evolved game
+#   Allows necessary ports through ufw
 # Based on https://www.linode.com/docs/game-servers/create-an-ark-survival-evolved-server-on-ubuntu-16-04/
 
 ################################################################################
@@ -15,14 +15,14 @@ servername="arkSEtup"
 # Map(s) of the ARK server/cluster
 servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland TheCenter ScorchedEarth_P Ragnarok Aberration_P Extinction Valguero_P Genesis CrystalIsles"
 ###################
+# Script location
+ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Username for the daemon
 username="ark"
 # Starting range for query ports
 StartingQueryPort=27015
 # Starting range for ports
 StartingPort=7777
-# Script location
-ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Add user that will be used to run the server
 echo "Create password for new user $username"
