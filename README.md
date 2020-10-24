@@ -1,5 +1,5 @@
 # arkSEtup
-ARK Survival Evolved server setup script
+ARK Survival Evolved setup script for headless linux server
 
 ## Download
     git init && git pull https://github.com/frgnca/arkSEtup test
