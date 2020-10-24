@@ -64,7 +64,7 @@ if [ -f "$ScriptLocation/settings/GameUserSettings.ini" ]; then
 fi
 
 # If there is a Game file
-if [ -f "$ScriptLocation/GameUserSettings.ini" ]; then
+if [ -f "$ScriptLocation/settings/Game.ini" ]; then
   # There is a Game file
 
   # As user $username, copy Game file
