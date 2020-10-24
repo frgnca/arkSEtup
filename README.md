@@ -2,7 +2,7 @@
 ARK Survival Evolved setup script for headless linux server
 
 ## Download
-    git init && git pull https://github.com/frgnca/arkSEtup test
+    git init && git pull https://github.com/frgnca/arkSEtup
 ## Settings *(optional)*
 > settings/Game.ini  
 > See https://ark.gamepedia.com/Server_Configuration#Game.ini
