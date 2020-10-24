@@ -101,14 +101,15 @@ ufw allow $PortA:$PortB/udp #? maybe optional
 # Create daemon #TODO check if exist not to append
 echo "[Unit]
 Description=ARK Survival Evolved $servername.$map
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
 [Service]
 Type=simple
 Restart=on-failure
 RestartSec=5
 StartLimitInterval=60s
 StartLimitBurst=3
-User=$username
-Group=$username
 ExecStartPre=/home/$username/steamcmd +login anonymous +force_install_dir /home/$username/server +app_update 376030 +quit" >> /etc/systemd/system/$username.$servername.$map.service
 # If there is a non-empty server whitelist
 if [ -s "$ScriptLocation/whitelist/PlayersExclusiveJoinList.txt" ]; then
@@ -118,7 +119,14 @@ else
   # There is no non-empty server whitelist
   echo "ExecStart=/home/$username/server/ShooterGame/Binaries/Linux/ShooterGameServer $map?listen?SessionName=$servername?QueryPort=$QueryPort?Port=$PortA -NoTransferFromFiltering -clusterid=$servername -server -log" >> /etc/systemd/system/$username.$servername.$map.service
 fi
-echo "[Install]
+echo "WorkingDirectory=/home/$username/server/ShooterGame/Binaries/Linux
+LimitNOFILE=100000
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s INT $MAINPID
+User=$username
+Group=$username
+
+[Install]
 WantedBy=multi-user.target" >> /etc/systemd/system/$username.$servername.$map.service
 
 done
