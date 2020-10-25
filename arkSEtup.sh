@@ -59,7 +59,7 @@ if [ -s "$ScriptLocation/settings/GameUserSettings.ini" ]; then
   su ark -c "cp $ScriptLocation/settings/GameUserSettings.ini /home/$username/server/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini"
 fi
 
-# Create SavedArks folder
+# As user $username, create SavedArks folder
 su ark -c "mkdir -p /home/$username/server/ShooterGame/Saved/SavedArks"
 
 templateFiles=$ScriptLocation/template/*
