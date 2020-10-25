@@ -19,7 +19,7 @@ servermaps="TheIsland TheCenter Ragnarok Valguero_P CrystalIsles" #"TheIsland Th
 ScriptLocation="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Username for the daemon
 username="ark"
-# Starting range for query ports
+# Starting range for query ports #TODO: Query Port cannot be between 27020 and 27050 due to Steam using those ports.
 StartingQueryPort=27015
 # Starting range for ports
 StartingPort=7777
